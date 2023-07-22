@@ -455,9 +455,12 @@ app.on('browser-window-focus', () => {
   log.debug('app.browser-window-focus');
 });
 
-app.configureHostResolver({
+app.whenReady().then(() => {
+  app.configureHostResolver({
     secureDnsMode: 'secure',
     secureDnsServers: [
-      'https://cloudflare-dns.com/dns-query'
+      'https://cloudflare-dns.com/dns-query',
+      'https://dns.google/dns-query'
     ]
   })
+})
